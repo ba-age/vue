@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>我是一个普通的页面</h1>
+  <button id="btn">去 page2 </button>
+
+  <div id="box">
+    page1
+  </div>
+
+  <script>
+    let btnEl = document.getElementById('btn');
+    let boxEl = document.getElementById('box');
+
+    btnEl.onclick = function() {
+      history.pushState('page2', 'hello', '#/page2');
+      boxEl.innerHTML = 'page2'
+    }
+
+    // 点击浏览器的前进后退按钮能够触发这个事件
+    window.onpopstate = function (obj) {
+      // console.log(obj);
+      if (obj.state === 'page2') {
+        boxEl.innerHTML = 'page2'
+      } else {
+        boxEl.innerHTML = 'page1'
+      }
+    }
+  </script>
+
+</body>
+</html>
